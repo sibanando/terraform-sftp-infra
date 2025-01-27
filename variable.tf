@@ -37,5 +37,5 @@ variable "sftp_bucket_name" {
 variable "domain_name" {
   description = "Domain name for Route 53"
   type        = string
-  default     = "talktech.in"
+  default     = "askxavierson.com"
 }
