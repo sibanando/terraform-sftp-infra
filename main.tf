@@ -2,6 +2,10 @@ provider "aws" {
   region = var.region
 }
 
+resource "random_id" "bucket_id" {
+  byte_length = 8
+}
+
 module "vpc" {
   source = "./modules/vpc"
 
@@ -22,7 +26,7 @@ module "sftp" {
 
   vpc_id             = module.vpc.vpc_id
   private_subnet_ids = module.vpc.private_subnet_ids
-  sftp_bucket_name   = var.sftp_bucket_name
+  sftp_bucket_name   = "${var.sftp_bucket_name}-${random_id.bucket_id.hex}"
   sftp_security_group = module.security.sftp_security_group_id
 }
 
